@@ -80,6 +80,7 @@ function Hero() {
             console.log("else");
             // If attendance data doesn't exist, then create it
             createAttendanceTable();
+            setLoading(false);
           }
         })
         .catch((error) => {
@@ -158,6 +159,7 @@ const createAttendanceTable = () => {
           // Assuming you want the name of the first user found
           const firstUserId = userKeys[0];
           const namee = snapshot.child(firstUserId).child('name').val();
+          setLoading(false);
           if (namee) {
             setName(namee);
           }

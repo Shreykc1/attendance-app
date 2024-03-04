@@ -1,0 +1,255 @@
+@font-face {
+    font-family: nueu-r;
+    src: local('Neue-r'),url('../../public/fonts/NeueHaasDisplayRoman.ttf');
+  }
+  
+  @font-face {
+    font-family: nueu-b;
+    src: local('Neue-b'),url('../../public/fonts/NeueHaasDisplayBold.ttf');
+  }
+  
+  @font-face {
+    font-family: nueu-l;
+    src: local('Neue-l'),url('../../public/fonts/NeueHaasDisplayLight.ttf');
+  }
+
+
+input[type='number'] {
+    -moz-appearance: textfield;
+}
+
+/* For Webkit browsers like Safari and Chrome */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+
+
+
+
+
+
+
+.titleText {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 10%;
+  font-family: nueu-r;
+}
+
+.titleText h1 {
+  font-size: 4vw;
+}
+
+
+
+
+
+
+.section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 7vh;
+  width: 100%;
+  font-family: nueu-l;
+  margin-bottom: 5%;
+  /* margin-top: 15%; */
+
+}
+
+
+.design {
+  height: 100%;
+  width: 45%;
+  position: absolute;
+  top: 0%;
+  right: 0;
+  opacity: 50%;
+}
+
+
+/* .main{
+    margin-top: 10px;
+} */
+
+
+
+
+.formbox {
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Center vertically */
+    align-items: center;
+  
+    width: 400px;
+    height: 2vh;
+    background: transparent;
+    border-radius: 20px;
+  
+  }
+
+.inputbox {
+  position: relative;
+  margin: 30px 0;
+  width: 350px;
+  border-bottom: 2px solid #fff;
+}
+
+.inputbox label {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+  color: #fff;
+  font-size: 1em;
+  pointer-events: none;
+  transition: .5s;
+}
+
+
+
+.input:focus~label,
+.input:not(:placeholder-shown)~label {
+  top: -5px;
+}
+
+.inputbox input {
+  width: 100%;
+  height: 50px;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  padding: 0 35px 0 5px;
+  color: #fff;
+ 
+}
+
+.inputbox ion-icon {
+  position: absolute;
+  right: 8px;
+  color: #fff;
+  font-size: 1.2em;
+  top: 20px;
+}
+
+.button {
+    padding: 17px 40px;
+    border-radius: 50px;
+    cursor: pointer;
+    position: relative;
+    left: 30%;
+    border: 0;
+    background-color: white;
+    box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-size: 15px;
+    transition: all 0.5s ease;
+  }
+  
+  .button:hover {
+    letter-spacing: 3px;
+    background-color: hsl(279, 94%, 93%);
+    color: hsl(0, 0%, 7%);
+    box-shadow: #851585 0px 5px 35px 0px;
+  }
+  
+  .button:active {
+    letter-spacing: 3px;
+    background-color: hsl(261deg 80% 48%);
+    color: hsl(0, 0%, 100%);
+    box-shadow: rgb(93 24 220) 0px 0px 0px 0px;
+    transform: translateY(10px);
+    transition: 100ms;
+  }
+
+
+
+  .SubBtn {
+    padding: 17px 40px;
+    border-radius: 50px;
+    cursor: pointer;
+    position: relative;
+    left: 30%;
+    border: 0;
+    background-color: white;
+    box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-size: 15px;
+    transition: all 0.5s ease;
+    display: none;
+  }
+  
+  .SubBtn:hover {
+    letter-spacing: 3px;
+    background-color: hsl(279, 94%, 93%);
+    color: hsl(0, 0%, 7%);
+    box-shadow: #851585 0px 5px 35px 0px;
+  }
+  
+  .SubBtn:active {
+    letter-spacing: 3px;
+    background-color: hsl(261deg 80% 48%);
+    color: hsl(0, 0%, 100%);
+    box-shadow: rgb(93 24 220) 0px 0px 0px 0px;
+    transform: translateY(10px);
+    transition: 100ms;
+  }
+
+
+
+
+  
+
+.register {
+  font-size: .9em;
+  color: #fff;
+  text-align: center;
+  margin: 25px 0 10px;
+}
+
+.register p a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600;
+}
+
+.register p a:hover {
+  text-decoration: underline;
+}
+
+
+.dont{
+  display: flex;
+  flex-direction: row;
+  color: white;
+  position: relative;
+  bottom: 25vh;
+}
+
+.signUp{
+  background-color: transparent;
+  border:none;
+  color:white;
+  font-size: 17px;
+  padding-top: 2.5px;
+}
+
+
+
+
+@media screen and (max-width: 1000px){
+ 
+  .section{
+    margin-top: 30px;
+  }
+ }

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../styles/Hero.module.css';
 import { signOut } from 'firebase/auth';
-import { useNavigate } from 'react-router';
+import { useNavigate, useLocation } from 'react-router';
 import {auth} from './firebase';
 import { getDatabase, ref, onValue, get,set } from "firebase/database";
 import Tilt from 'react-parallax-tilt';
 import Spinner from '../components/spinner';
 
-function Hero() {
+function Hero(props) {
 
   const sub = 26;
 
@@ -34,10 +34,13 @@ function Hero() {
  let [Sub5, setSub5] = useState(calculate(Sub5Attended).toFixed(2));
  let [Sub6, setSub6] = useState(calculate(Sub6Attended).toFixed(2));
  let [Sub7, setSub7] = useState(calculate(Sub7Attended).toFixed(2));
- let [name,setName] = useState();
+//  let [name,setName] = useState();
   const [subjects,setSubjects] = useState([]);
   const navigate = useNavigate();
-
+  const location = useLocation();
+  
+  const [name, setName] = useState(location.state.name);
+  console.log("name: "+ name);
 
     
 
@@ -104,7 +107,7 @@ function Hero() {
 
 
 const createAttendanceTable = () => {
-  setLoading(true);
+  
     const countRef = ref(db, `users/${name}/attendance/`);
     // Set initial data to the "attendance" table
     set(countRef, { 
@@ -136,45 +139,35 @@ const createAttendanceTable = () => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-  useEffect(() => {
-    const dbRef = ref(db, 'users/');
-    setLoading(true);
-    const fetchData = () => {
-      return onValue(dbRef, (snapshot) => {
-        if (snapshot.exists()) {
-          const userKeys = [];
-          snapshot.forEach((childSnapshot) => {
-            userKeys.push(childSnapshot.key);
-          });
-          // Assuming you want the name of the first user found
-          const firstUserId = userKeys[0];
-          const namee = snapshot.child(firstUserId).child('name').val();
-          setLoading(false);
-          if (namee) {
-            setName(namee);
-          }
-        } else {
-          console.log("No data available");
-        }
-      }, (error) => {
-        console.error(error);
-      });
-    };
+  // useEffect(() => {
+  //   const dbRef = ref(db, 'users/');
+    
+  //   const fetchData = () => {
+  //     return onValue(dbRef, (snapshot) => {
+  //       if (snapshot.exists()) {
+  //         const userKeys = [];
+  //         snapshot.forEach((childSnapshot) => {
+  //           userKeys.push(childSnapshot.key);
+  //         });
+  //         // Assuming you want the name of the first user found
+  //         const firstUserId = userKeys[0];
+  //         const namee = snapshot.child(firstUserId).child('name').val();
+  //         setLoading(false);
+  //         if (namee) {
+  //           setName(namee);
+  //         }
+  //       } else {
+  //         console.log("No data available");
+  //       }
+  //     }, (error) => {
+  //       console.error(error);
+  //     });
+  //   };
     
   
-    // Cleanup: Detach the listener when the component unmounts
-    return () => fetchData();
-  }, [db]);
+  //   // Cleanup: Detach the listener when the component unmounts
+  //   return () => fetchData();
+  // }, [db]);
 
 
 
@@ -190,7 +183,7 @@ const createAttendanceTable = () => {
           const subject = childSnapshot.val();
           subjectsList.push(subject);
         });
-        // Now subjectsList contains all the subjects under 'user/{name}/subjects/'
+       
         console.log(subjectsList);
         // If you want to store the subjects list in state:
         setSubjects(subjectsList);
@@ -653,9 +646,9 @@ const createAttendanceTable = () => {
  return (
   
   <div className={styles.container}>
-  {loading ? (
+  {/* {loading ? (
       <Spinner /> // Your loading component
-    ) : (
+    ) : ( */}
     <div className={styles.main}>
     <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} perspective={200} glareMaxOpacity={0}>
       <div className={styles.titleText}>
@@ -713,7 +706,7 @@ const createAttendanceTable = () => {
       
     </div>
    
-   )}
+   {/* )} */}
     </div>
 
     

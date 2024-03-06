@@ -39,7 +39,7 @@ const db = getDatabase();
 
 
 
-function Signup() {
+function Signup(props) {
  
 
   let navigate = useNavigate();
@@ -48,7 +48,7 @@ function Signup() {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [isRegistered,setIsRegistered] = useState(false);
-  let uid = Math.floor(Math.random() * (1000 - 100 + 1)) + 100;
+  const [uid,setUid] = useState(0);
 
   const dbRef = ref(db,'users/');
 
@@ -74,26 +74,15 @@ function Signup() {
     await createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
         // Signed UP
-        navigate("/NumberSub");
+        
         const user = userCredential.user;
         console.log(user);
 
 
         addEntries(name,email,password);
+        navigate("/NumberSub",{state:{name:name}});
         alert('Login Successfull!');
         
-
-
-          // push(dbRef, {
-          //       name: name,
-          //       email: email,
-          //       password: password
-          //     }).then(() => {
-          //       console.log('Data pushed successfully');
-          //     }).catch((error) => {
-          //       console.error('Error pushing data:', error);
-          //     });
-         // setting value
          
       }
        
@@ -124,7 +113,8 @@ function addEntries(name,email,password) {
   const postData = {
     name:name,
     email:email,
-    password:password 
+    password:password ,
+    uid : uid,
   };
 
   // Get a key for a new Post.
@@ -134,6 +124,10 @@ function addEntries(name,email,password) {
 
   return update(ref(db), updates);
 }
+
+
+
+
 
 
  useEffect(() => {
@@ -179,7 +173,7 @@ function addEntries(name,email,password) {
                 <label htmlFor="">Password</label>
               </div>
 
-              <button className={styles.button} onClick={signupAuth} type="submit">Submit</button>
+             <button className={styles.button} onClick={signupAuth} type="submit">Submit</button>
 
               <div id="err"></div>
             </form>

@@ -12,7 +12,7 @@ import NumberSub from './numbersub';
 
 
 
-function App() {
+function App(props) {
  
   return (
     

@@ -7,7 +7,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { getAuth,signInWithEmailAndPassword } from "firebase/auth";
 import { Link,Route, Routes,useNavigate } from 'react-router-dom';
 import Hero from './Hero';
-import { getDatabase } from 'firebase/database';
+import { getDatabase,ref ,onValue, child } from 'firebase/database';
 
 
 
@@ -32,9 +32,9 @@ const db = getDatabase();
 
 
 
-function Login() {
+function Login(props) {
   let navigate = useNavigate();
- 
+  const [name,setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -61,11 +61,51 @@ function Login() {
     await signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
         // Signed in
-        navigate("/Hero");
+
+        
         const user = userCredential.user;
         console.log(user);
-        alert('Login Successfull!');
+
+        // const key = fetchData();
+        // setName(key);
+
+        let a;
+        onValue(dbRef, (snapshot) => {
+          if (snapshot.exists()) {
+            
+            snapshot.forEach((childSnapshot) => {
+              const emailll = childSnapshot.val().email;
+              
+              let key; 
+              console.log(emailll);
+              if (emailll == email){
+
+                key = childSnapshot.val().name;
+                console.log(key);
+                a = key;
+              }
+            });
+            
+            
+            
+          } else {
+            console.log("not found");
+          }
+        }, (error) => {
+          console.error(error);
+        });
+      
         
+        
+        
+        // alert('Login Successfull!');
+        alert("name: " + a);
+        if(a != undefined){
+        navigate('/Hero',{state:{name:a}});
+        }
+        else{
+          alert("Try Logging Again!");
+        }
         // ...
     })
     .catch((error) => {
@@ -78,8 +118,37 @@ function Login() {
 
 
 
+
 }
 
+
+
+
+
+    const dbRef = ref(db, 'users/');
+    
+  // const fetchData = onValue(dbRef, (snapshot) => {
+  //   if (snapshot.exists()) {
+      
+  //     snapshot.forEach((childSnapshot) => {
+  //       const emailll = childSnapshot.val().email;
+  //       let key; 
+  //       // console.log(emailll);
+  //       if (emailll == email){
+  //         key = childSnapshot.val().name;
+  //         // console.log(key);
+  //         return key;
+  //       }
+  //     });
+      
+      
+      
+  //   } else {
+  //     console.log("not found");
+  //   }
+  // }, (error) => {
+  //   console.error(error);
+  // });
 
 
 

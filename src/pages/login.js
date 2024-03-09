@@ -8,6 +8,7 @@ import { getAuth,signInWithEmailAndPassword } from "firebase/auth";
 import { Link,Route, Routes,useNavigate } from 'react-router-dom';
 import Hero from './Hero';
 import { getDatabase,ref ,onValue, child } from 'firebase/database';
+import Navbar from '../components/Navbar';
 
 
 
@@ -168,10 +169,8 @@ function Login(props) {
 
 
   <div className={styles.container}>
-    {/* <Routes>                                                                     
-        <Route path="/Hero" element={<Hero/>}/>
-        <Route path="/login" element={<Login/>}/>
-    </Routes> */}
+
+    {/* <Navbar /> */}
      
     
     <div className={styles.titleText}>

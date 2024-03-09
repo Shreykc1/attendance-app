@@ -1,0 +1,41 @@
+@font-face {
+    font-family: frisans;
+    src: local('Neue-l'),url('../../public/fonts/NeueHaasDisplayLight.ttf');
+  }
+
+
+.main{
+    height: 100px;
+    background-color: transparent;
+
+}
+
+/* .nav{
+    display: flex;
+    flex-direction: row;
+} */
+
+.nav ul{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    position: absolute;
+    left: 1%;
+    top: 1%;
+}
+
+.nav ul li img{
+    filter: grayscale(10);
+   
+    height: 60px;
+    width: 60px;
+}
+
+.title{
+    font-family: frisans;
+    color: white;
+    font-size: 25px;
+    margin-left: 20px;
+    margin-top: 15px;
+}

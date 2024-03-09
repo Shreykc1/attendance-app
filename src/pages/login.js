@@ -69,44 +69,7 @@ function Login(props) {
 
         // const key = fetchData();
         // setName(key);
-
-        let a;
-        onValue(dbRef, (snapshot) => {
-          if (snapshot.exists()) {
-            
-            snapshot.forEach((childSnapshot) => {
-              const emailll = childSnapshot.val().email;
-              
-              let key; 
-              console.log(emailll);
-              if (emailll == email){
-
-                key = childSnapshot.val().name;
-                console.log(key);
-                a = key;
-              }
-            });
-            
-            
-            
-          } else {
-            console.log("not found");
-          }
-        }, (error) => {
-          console.error(error);
-        });
-      
-        
-        
-        
-        // alert('Login Successfull!');
-        alert("name: " + a);
-        if(a != undefined){
-        navigate('/Hero',{state:{name:a}});
-        }
-        else{
-          alert("Try Logging Again!");
-        }
+        getName();
         // ...
     })
     .catch((error) => {
@@ -118,12 +81,48 @@ function Login(props) {
 
 
 
-
-
 }
 
 
-
+const getName = async (e) => {
+ 
+  let a;
+ 
+  try {
+     // Wrap onValue in a Promise to make it awaitable
+     const snapshot = await new Promise((resolve, reject) => {
+       onValue(dbRef, (snapshot) => {
+         if (snapshot.exists()) {
+           resolve(snapshot);
+         } else {
+           reject(new Error("not found"));
+         }
+       }, (error) => {
+         reject(error);
+       });
+     });
+ 
+     // Now you can use snapshot as if it was fetched synchronously
+     snapshot.forEach((childSnapshot) => {
+       const emailFromSnapshot = childSnapshot.val().email;
+       if (emailFromSnapshot === email) {
+         a = childSnapshot.val().name;
+       }
+     });
+ 
+     // alert('Login Successfull!');
+     alert("name: " + a);
+     if (a !== undefined) {
+       navigate('/Hero', { state: { name: a } });
+     } else {
+       alert("Try Logging Again!");
+     }
+  } catch (error) {
+     console.error(error);
+     alert("An error occurred. Please try again.");
+  }
+ };
+ 
 
 
     const dbRef = ref(db, 'users/');

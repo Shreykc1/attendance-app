@@ -16,6 +16,7 @@ function Hero(props) {
     return value;
  };
 
+ 
 
  const [loading, setLoading] = useState(false);
 
@@ -139,36 +140,6 @@ const createAttendanceTable = () => {
 
 
 
-  // useEffect(() => {
-  //   const dbRef = ref(db, 'users/');
-    
-  //   const fetchData = () => {
-  //     return onValue(dbRef, (snapshot) => {
-  //       if (snapshot.exists()) {
-  //         const userKeys = [];
-  //         snapshot.forEach((childSnapshot) => {
-  //           userKeys.push(childSnapshot.key);
-  //         });
-  //         // Assuming you want the name of the first user found
-  //         const firstUserId = userKeys[0];
-  //         const namee = snapshot.child(firstUserId).child('name').val();
-  //         setLoading(false);
-  //         if (namee) {
-  //           setName(namee);
-  //         }
-  //       } else {
-  //         console.log("No data available");
-  //       }
-  //     }, (error) => {
-  //       console.error(error);
-  //     });
-  //   };
-    
-  
-  //   // Cleanup: Detach the listener when the component unmounts
-  //   return () => fetchData();
-  // }, [db]);
-
 
 
   const subjectsList = [];
@@ -203,11 +174,6 @@ const createAttendanceTable = () => {
 
 
 
- 
-
-
- 
- 
   
   const handleDecrement = (setSubjectAttended) => {
     console.log("Dec")

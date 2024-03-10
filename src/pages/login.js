@@ -89,7 +89,7 @@ const getName = async (e) => {
   let a;
  
   try {
-     // Wrap onValue in a Promise to make it awaitable
+     
      const snapshot = await new Promise((resolve, reject) => {
        onValue(dbRef, (snapshot) => {
          if (snapshot.exists()) {
@@ -102,7 +102,7 @@ const getName = async (e) => {
        });
      });
  
-     // Now you can use snapshot as if it was fetched synchronously
+     
      snapshot.forEach((childSnapshot) => {
        const emailFromSnapshot = childSnapshot.val().email;
        if (emailFromSnapshot === email) {
@@ -110,7 +110,7 @@ const getName = async (e) => {
        }
      });
  
-     // alert('Login Successfull!');
+    
      alert("name: " + a);
      if (a !== undefined) {
        navigate('/Hero', { state: { name: a } });
@@ -156,8 +156,10 @@ const getName = async (e) => {
 
  useEffect(() => {
   document.body.style.overflowX = "hidden";
+  console.log('hey');
   return () => {
     document.body.style.overflowX = "scroll"
+    
   };
 }, []);
 

@@ -171,7 +171,7 @@ const getName = async (e) => {
 
   <div className={styles.container}>
 
-    {/* <Navbar /> */}
+
      
     
     <div className={styles.titleText}>
@@ -208,6 +208,7 @@ const getName = async (e) => {
       </div>
       </Link>
 
+      
       
 
     </div>

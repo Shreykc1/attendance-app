@@ -5,10 +5,10 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { onAuthStateChanged } from 'firebase/auth';
 import { getAuth,signInWithEmailAndPassword } from "firebase/auth";
-import { Link,Route, Routes,useNavigate } from 'react-router-dom';
-import Hero from './Hero';
-import { getDatabase,ref ,onValue, child } from 'firebase/database';
-import Navbar from '../components/Navbar';
+import { Link,useNavigate } from 'react-router-dom';
+
+import { getDatabase,ref ,onValue } from 'firebase/database';
+
 
 
 
@@ -127,36 +127,12 @@ const getName = async (e) => {
 
     const dbRef = ref(db, 'users/');
     
-  // const fetchData = onValue(dbRef, (snapshot) => {
-  //   if (snapshot.exists()) {
-      
-  //     snapshot.forEach((childSnapshot) => {
-  //       const emailll = childSnapshot.val().email;
-  //       let key; 
-  //       // console.log(emailll);
-  //       if (emailll == email){
-  //         key = childSnapshot.val().name;
-  //         // console.log(key);
-  //         return key;
-  //       }
-  //     });
-      
-      
-      
-  //   } else {
-  //     console.log("not found");
-  //   }
-  // }, (error) => {
-  //   console.error(error);
-  // });
-
-
+ 
 
 
 
  useEffect(() => {
   document.body.style.overflowX = "hidden";
-  console.log('hey');
   return () => {
     document.body.style.overflowX = "scroll"
     
@@ -172,7 +148,7 @@ const getName = async (e) => {
   <div className={styles.container}>
 
 
-     
+
     
     <div className={styles.titleText}>
         <h1>Login</h1>
@@ -208,7 +184,6 @@ const getName = async (e) => {
       </div>
       </Link>
 
-      
       
 
     </div>
